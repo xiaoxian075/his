@@ -1,0 +1,13 @@
+server:
+  port: 13021
+#  servlet:
+#    context-path: /yundata
+
+spring:
+  rabbitmq:
+    host: 192.168.1.99
+    port: 5672
+    username: guest
+    password: guest
+    send: 
+      asyn: asyn

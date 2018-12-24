@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.his.clinic.repository.mapper.LoginMapper">
+
+  <resultMap id="BaseResultMap" type="com.his.clinic.repository.model.Login">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wx_open_id" jdbcType="VARCHAR" property="wxOpenId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, account, password, wx_open_id, user_id, state, create_time, update_time
+  </sql>
+
+  <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    	<include refid="Base_Column_List" />
+    from t_login
+    where account = #{account,jdbcType=VARCHAR} 
+    limit 1
+  </select>  
+  
+  <insert id="insert" parameterType="com.his.clinic.repository.model.Login" keyProperty="id" useGeneratedKeys="true">
+    insert into t_login (
+    	id, 
+    	account, 
+    	password, 
+    	wx_open_id, 
+    	user_id, 
+    	state, 
+    	create_time, 
+    	update_time)
+    values (
+    	#{id,jdbcType=BIGINT}, 
+    	#{account,jdbcType=VARCHAR}, 
+    	#{password,jdbcType=VARCHAR}, 
+      	#{wxOpenId,jdbcType=VARCHAR}, 
+      	#{userId,jdbcType=BIGINT}, 
+      	#{state,jdbcType=INTEGER}, 
+      	#{createTime,jdbcType=BIGINT}, 
+      	#{updateTime,jdbcType=BIGINT})
+  </insert>
+</mapper>

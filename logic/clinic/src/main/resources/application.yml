@@ -1,0 +1,60 @@
+server:
+  port: 13031
+#  servlet:
+#    context-path: /yundata
+
+spring:
+  rabbitmq:
+    host: 192.168.1.99
+    port: 5672
+    username: guest
+    password: guest
+    send: 
+      asyn: asyn
+  redis:
+    database: 2
+    host: 192.168.1.99
+    port: 6379
+    password: 
+    timeout: 2000
+    jedis:
+      pool:
+        max-active: 10000
+        min-idle: 0
+        max-idle: 50
+        max-wait: -1
+    user:
+      database: 11
+      host: 192.168.1.99
+      port: 6379
+      password:              
+  datasource:
+    platform: mysql
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+#    filters: stat,wall,log4j
+    logSlowSql: true
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.99:3306/db_clinic?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: retow
+    password: Retow0594@
+    driverClassName: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver      
+      
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.his.asyn.repository.model
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql       

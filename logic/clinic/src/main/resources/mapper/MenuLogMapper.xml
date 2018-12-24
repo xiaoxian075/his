@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.his.clinic.repository.mapper.MenuLogMapper">
+
+  <resultMap id="BaseResultMap" type="com.his.clinic.repository.model.MenuLog">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="uri" jdbcType="VARCHAR" property="uri" />
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, uri, menu_id, menu_name, model_id, model_name
+  </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    	<include refid="Base_Column_List" />
+    from t_menu_log
+  </select>
+</mapper>

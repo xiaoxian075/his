@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.his.asyn.repository.mapper.ClinicLogMapper">
+  <resultMap id="BaseResultMap" type="com.his.asyn.repository.model.ClinicLog">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="clinic_id" jdbcType="BIGINT" property="clinicId" />
+    <result column="clinic_name" jdbcType="VARCHAR" property="clinicName" />  
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" /> 
+    <result column="model_id" jdbcType="INTEGER" property="modelId" />
+    <result column="model_name" jdbcType="VARCHAR" property="modelName" /> 
+    <result column="client_ip" jdbcType="CHAR" property="clientIp" />
+    <result column="timestamp" jdbcType="BIGINT" property="timestamp" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.his.asyn.repository.model.ClinicLog">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <insert id="insert" parameterType="com.his.asyn.repository.model.ClinicLog" keyProperty="id" useGeneratedKeys="true">
+    insert into t_clinic_log (
+    	id, 
+    	user_id,  
+    	user_name, 
+      	clinic_id, 
+      	clinic_name, 
+      	menu_id, 
+      	menu_name,
+      	model_id, 
+      	model_name,
+      	client_ip, 
+      	`timestamp`, 
+      	content)
+    values (
+    	#{id,jdbcType=BIGINT}, 
+    	#{userId,jdbcType=BIGINT}, 
+    	#{userName,jdbcType=VARCHAR},
+      	#{clinicId,jdbcType=BIGINT}, 
+      	#{clinicName,jdbcType=VARCHAR}, 
+      	#{menuId,jdbcType=INTEGER}, 
+      	#{menuName,jdbcType=VARCHAR}, 
+      	#{modelId,jdbcType=INTEGER}, 
+      	#{modelName,jdbcType=VARCHAR},
+    	#{clientIp,jdbcType=CHAR}, 
+      	#{timestamp,jdbcType=BIGINT}, 
+      	#{content,jdbcType=LONGVARCHAR})
+  </insert>
+</mapper>

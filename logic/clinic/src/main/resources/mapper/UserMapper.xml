@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.his.clinic.repository.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.his.clinic.repository.model.User">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="identified_id" jdbcType="VARCHAR" property="identifiedId" />
+    <result column="identified_name" jdbcType="VARCHAR" property="identifiedName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, user_name, identified_id, identified_name, phone, weixin, photo, `desc`, create_time, update_time
+  </sql>
+  
+  <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    	<include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=BIGINT} 
+    limit 1
+  </select>   
+    
+  <insert id="insert" parameterType="com.his.clinic.repository.model.User">
+    insert into t_user (
+    	id, 
+    	user_id, 
+      	user_name,
+      	identified_id, 
+      	identified_name, 
+      	phone, 
+      	`weixin`, 
+      	photo, 
+      	`desc`, 
+      	create_time, 
+      	update_time)
+    values (
+    	#{id,jdbcType=BIGINT}, 
+    	#{userId,jdbcType=BIGINT},
+      	#{userName,jdbcType=VARCHAR}, 
+      	#{identifiedId,jdbcType=VARCHAR}, 
+      	#{identifiedName,jdbcType=VARCHAR}, 
+      	#{phone,jdbcType=VARCHAR}, 
+      	#{weixin,jdbcType=VARCHAR}, 
+      	#{photo,jdbcType=VARCHAR}, 
+      	#{desc,jdbcType=VARCHAR}, 
+      	#{createTime,jdbcType=BIGINT}, 
+      	#{updateTime,jdbcType=BIGINT}
+      )
+  </insert>
+  
+  
+</mapper>
